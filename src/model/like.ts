@@ -1,4 +1,4 @@
-import {Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 import {User} from "./user";
 import {Blog} from "./blog";
 
@@ -6,9 +6,12 @@ import {Blog} from "./blog";
 export class Like {
     @PrimaryGeneratedColumn()
     public readonly id;
-    @OneToOne(() => User)
-    @JoinColumn()
+    @Column()
+    public userId: number;
     public user: User;
     @ManyToOne(() => Blog, (blog) => blog.likes)
     blog: Blog;
 }
+
+
+
